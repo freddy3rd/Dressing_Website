@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Kurale&family=Source+Sans+3&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+  background-color: #db9db0;
+}
+
+body::-webkit-scrollbar,
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+.hide-scrollbar {
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+}
+
+.ff-Kurale {
+  font-family: "Kurale", serif;
+  letter-spacing: 1px;
+}
+.ff-Source_Sans {
+  font-family: "Source Sans 3", sans-serif;
+}

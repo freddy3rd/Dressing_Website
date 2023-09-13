@@ -6,36 +6,26 @@ import { FaShareAlt, FaHeart } from "react-icons/fa";
 import image from "./assets/Men's Model/8-suit-png-image.png";
 import image_2 from "./assets/Men's Model/Model-Man-PNG-Picture.png";
 import Carousel from "./Components/Carousel";
-import {
-  AnimatePresence,
-  motion,
-  stagger,
-  transform,
-  useAnimate,
-} from "framer-motion";
+import { AnimatePresence, motion, stagger, useAnimate } from "framer-motion";
 import { animationVariant } from "./util/animate.jsx";
 import { Data } from "./Data/Data.jsx";
 
 function App() {
   const [count, setCount] = useState(0);
-  const [coverState, setCoverState] = useState(true);
+  const [loaded, setLoaded] = useState(false);
   const [scope, animate] = useAnimate();
-
-  useEffect(() => {
-    console.log(coverState);
-  }, [coverState]);
 
   const onClickAnimation = () => {
     animate([
-      [".leftOrigin", { scaleX: [0, 1, 0] }, { duration: 1.5 }],
-      [".rightOrigin", { scaleX: [0, 1, 0] }, { duration: 1.5, at: "<" }],
-      [".span", { scaleX: [0, 1, 0] }, { duration: 1.5, at: "<" }],
-      [".title", { scaleX: [0, 1, 0] }, { duration: 1.5, at: "<" }],
+      [".leftOrigin", { scaleX: 1 }, { duration: 0.8 }],
+      [".rightOrigin", { scaleX: 1 }, { duration: 0.8, at: "<" }],
+      [".span", { scaleX: 1 }, { duration: 0.8, at: "<" }],
+      [".title", { scaleX: 1 }, { duration: 0.8, at: "<" }],
       [
         ".sentence",
-        { scaleX: [0, 1, 0] },
+        { scaleX: 1 },
         {
-          duration: 1.5,
+          duration: 0.8,
           delay: stagger(0.02, { ease: "easeOut" }),
           at: "<",
           from: "center",
@@ -43,6 +33,25 @@ function App() {
       ],
     ]);
   };
+
+  if (loaded) {
+    animate([
+      [".leftOrigin", { scaleX: [1, 0] }, { duration: 0.8 }],
+      [".rightOrigin", { scaleX: [1, 0] }, { duration: 0.8, at: "<" }],
+      [".span", { scaleX: [1, 0] }, { duration: 0.8, at: "<" }],
+      [".title", { scaleX: [1, 0] }, { duration: 0.8, at: "<" }],
+      [
+        ".sentence",
+        { scaleX: [1, 0] },
+        {
+          duration: 0.8,
+          delay: stagger(0.02, { ease: "easeOut" }),
+          at: "<",
+          from: "center",
+        },
+      ],
+    ]);
+  }
 
   const cover = (bgcolor, xAxis, yAxis, width, height, scope) => {
     return (
@@ -85,6 +94,7 @@ function App() {
                       <motion.img
                         key={data.id}
                         src={data.img}
+                        onLoad={() => setLoaded(!loaded)}
                         alt=""
                         className="md:absolute sticky top-0 left-0 w-full h-full object-scale-down -z-20"
                       />
@@ -108,7 +118,7 @@ function App() {
                   {Data.map(
                     (data) =>
                       data.id === count && (
-                        <p className=" ff-Kurale tracking-widest">
+                        <p key={data.id} className=" ff-Kurale tracking-widest">
                           {data.subheader}
                         </p>
                       )
@@ -124,7 +134,8 @@ function App() {
                     "title"
                   )}
                   {Data.map(
-                    (data) => data.id === count && <h1>{data.title}</h1>
+                    (data) =>
+                      data.id === count && <h1 key={data.id}>{data.title}</h1>
                   )}
                 </motion.div>
                 <motion.div className="ff-Source_Sans relative ">
@@ -155,7 +166,9 @@ function App() {
                   {Data.map(
                     (data) =>
                       data.id === count && (
-                        <p className=" line-clamp-4">{data.detail}</p>
+                        <p key={data.id} className=" line-clamp-4">
+                          {data.detail}
+                        </p>
                       )
                   )}
                 </motion.div>

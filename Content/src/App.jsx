@@ -301,6 +301,9 @@ function App() {
               </div>
             </div>
           </main>
+          <span className=" absolute bottom-0 right-0 px-4 font-bold">
+            Designed By Fazil Studio
+          </span>
         </div>
       </AnimatePresence>
     </>

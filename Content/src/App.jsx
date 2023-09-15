@@ -38,6 +38,7 @@ function App() {
     animate([
       [".leftOrigin", { scaleX: [1, 0] }, { duration: 0.8 }],
       [".rightOrigin", { scaleX: [1, 0] }, { duration: 0.8, at: "<" }],
+      ["img", { opacity: [0, 1] }, { duration: 0.8, at: "<" }],
       [".span", { scaleX: [1, 0] }, { duration: 0.8, at: "<" }],
       [".title", { scaleX: [1, 0] }, { duration: 0.8, at: "<" }],
       [
@@ -105,6 +106,7 @@ function App() {
             </div>
 
             <div className=" w-full md:grid md:grid-cols-3 flex flex-col gap-2">
+              {/* adjust */}
               <motion.div className="grid gap-2 self-center md:p-0 px-4 p-8">
                 <motion.span className="font-bold text-sm px-1  relative w-[max-content]">
                   {cover(
@@ -124,6 +126,7 @@ function App() {
                       )
                   )}
                 </motion.span>
+                {/* adjust */}
                 <motion.div className="text-6xl font-bold ff-Kurale relative w-full ">
                   {cover(
                     "bg-[#db9db0]",
@@ -138,6 +141,7 @@ function App() {
                       data.id === count && <h1 key={data.id}>{data.title}</h1>
                   )}
                 </motion.div>
+                {/* adjust */}
                 <motion.div className="ff-Source_Sans relative ">
                   {cover(
                     "bg-[#db9db0] ",
@@ -301,7 +305,7 @@ function App() {
               </div>
             </div>
           </main>
-          <span className=" absolute bottom-0 right-0 px-4 font-bold">
+          <span className="md:absolute block bottom-0 right-0 px-4 font-bold">
             Designed By Fazil Studio
           </span>
         </div>
